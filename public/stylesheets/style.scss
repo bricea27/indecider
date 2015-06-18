@@ -1,0 +1,153 @@
+// Modules and Variables
+@import "modules/mixins";
+
+// Partials
+@import "partials/reset";
+
+// Third-party
+@import "vendor/normalize";
+@import "vendor/animations";
+
+$primary: #3498db;
+$secondary: #2980b9;
+$border: white;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+html, body {
+	height: 100%;
+	background: $primary;
+	font-family: 'Open sans', 'Helvetica', sans-serif;
+}
+
+button {
+	background: none;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border: 4px solid $border;
+	outline: none;
+	color: white;
+	padding: 1.25rem;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	@include transition(all 0.2s ease);
+}
+
+textarea {
+	background: lighten($primary, 5%);
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border: 4px solid white;
+	outline: none;
+	color: white;
+	font-size: 2rem;
+	padding: 1rem;
+	color: white;
+	@include transition(all 0.2 ease);
+}
+
+button:hover, button:focus {
+	background: $secondary;
+	border: 4px solid $secondary;
+	@include transition(all 0.2 ease);
+}
+
+::-webkit-input-placeholder {
+   color: white;
+   opacity: 0.5;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white; 
+   opacity: 0.5; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;
+   opacity: 0.5;  
+}
+
+:-ms-input-placeholder {  
+   color: white;  
+   opacity: 0.5;
+}
+
+#questionSection {
+	width: 100%;
+	height: 100%;
+	background: $primary;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	.question-container{
+		max-width: 800px;
+		width: 80%;
+		height: 400px;
+		@include abs-center;
+
+		button, textarea {
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 24px;
+		}
+
+		textarea {
+			width: 100%;
+			height: 200px;
+		}
+	}
+}
+
+#answerSection {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: $primary no-repeat center center;
+  	background-size: cover;
+	display: none;
+	
+	.answer-container {
+		
+		max-width: 800px;
+		width: 80%;
+		height: 400px;
+		@include abs-center;
+
+		#answer {
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 6rem;
+			font-weight: 700;
+			color: white;
+		}
+
+		#description {
+			text-align: center;
+			margin-bottom: 24px;
+			color: white;
+			font-size: 2rem;
+			line-height: 1.5;
+		}
+
+		#newQuestion {
+			display: block;
+			margin: 0 auto;
+			
+			/*&:hover, &:focus {
+				background: black;
+				border: 4px solid black;
+			}*/
+		}
+	}
+}
