@@ -4,23 +4,26 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
   </head>
   <body>
-	
-	
-	<section id="questionSection" class="">
-		<div class="question-container">
-			<textarea id="question" placeholder="Please type a yes or no question..." autofocus></textarea>
-			<button id="submit">Submit</button>
+
+  <h1 id="loader" class="glow" style="display:none;"></h1>
+
+	<section id="questionContainer" class="fadeIn">
+		<div class="container">
+      <h1 id="title">The InDecider</h1>
+			<input type="text" id="question" placeholder="Please type a yes or no question..." autofocus>
+      <button id="submit" class="button"><i class="fa fa-cog"></i>Submit</button>
 		</div>
 	</section>
-	
-	<section id="answerSection" class="">
-		<div class="answer-container">
+
+  <section id="answerContainer" style="display:none;">
+		<div class="container">
 			<h1 id="answer" class="fadeIn"></h1>
-			<button id="newQuestion">New Question</button>
+      <button id="newQuestion" class="button fadeIn">Ask Again</button>
 		</div>
-	</section>
+	</Container>
 
     <script src="javascripts/main.js"></script>
   </body>
