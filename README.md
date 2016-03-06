@@ -1,5 +1,5 @@
 # The InDecider
-Simple, one page website that prompts the user for a yes or no question, and responds with a funny gif response,
+Simple, one page website that prompts the user for a yes or no question, and responds with a funny gif,
 pulling from the [yesnowtf](http://yesno.wtf/) API.
 
 ### Technologies Used:
