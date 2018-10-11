@@ -54,12 +54,12 @@ function answerQuestion(questionContainer, answer, answerContainer) {
 		loader.style.display="none";
 		answerContainer.style.display="";
 	}, 2000);
-	var url = "http://yesno.wtf/api/";
 	var request = new XMLHttpRequest();
-	request.open("GET", url, true);
+	request.open("GET", "/api", true);
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
 			var response = JSON.parse(request.responseText);
+			console.log(response);
 			if (response['answer'] === "yes") {
 				randomAnswer(yesAnswers, answer);
 			} else {
