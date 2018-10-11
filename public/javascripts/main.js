@@ -59,7 +59,6 @@ function answerQuestion(questionContainer, answer, answerContainer) {
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
 			var response = JSON.parse(request.responseText);
-			console.log(response);
 			if (response['answer'] === "yes") {
 				randomAnswer(yesAnswers, answer);
 			} else {
