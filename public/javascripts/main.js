@@ -16,14 +16,14 @@ var loaderMessages = ["I'm thinking...", "Give me a sec there sport...", "Proces
 submit.addEventListener("click", function(){
 	var questionText = question.value.trim();
 	if (questionText.length > 0) {
-		answerQuestion(questionContainer, answer, answerContainer);
+		answerQuestion(questionContainer, answer, answerContainer, questionText);
 	}
 })
 
 question.addEventListener("keydown", function(e) {
 	var questionText = question.value.trim();
 	if (e.keyCode == 13 && questionText.length > 0) {
-		answerQuestion(questionContainer, answer, answerContainer);
+		answerQuestion(questionContainer, answer, answerContainer, questionText);
 	}
 });
 
@@ -46,7 +46,7 @@ function randomAnswer(array, element) {
 	element.innerHTML = randomAnswer;
 }
 
-function answerQuestion(questionContainer, answer, answerContainer) {
+function answerQuestion(questionContainer, answer, answerContainer, questionText) {
 	randomLoader(loaderMessages, loader);
 	questionContainer.className = "fadeOut";
 	loader.style.display="";
@@ -55,10 +55,27 @@ function answerQuestion(questionContainer, answer, answerContainer) {
 		answerContainer.style.display="";
 	}, 2000);
 	var request = new XMLHttpRequest();
-	request.open("GET", "/api", true);
+
+	// default endpoint
+	let endpoint = "/api";
+	// let's add a little manipulation :)
+	const positiveWordsArray = ["good", "great", "awesome", "excellent"];
+	const negativeWordArray = ["bad", "horrible", "terrible", "awful"];
+	const forceYes = positiveWordsArray.some(word => {
+		return questionText.indexOf(word) > -1
+	});
+	const forceNo = negativeWordArray.some(word => {
+		return questionText.indexOf(word) > -1
+	});
+
+	if (questionText.toLowerCase().includes("andrew") && forceYes) endpoint += "/yes";
+	if (questionText.toLowerCase().includes("andrew") && forceNo) endpoint += "/no";
+
+	request.open("GET", endpoint, true);
 	request.onload = function() {
 		if (request.status >= 200 && request.status < 400) {
 			var response = JSON.parse(request.responseText);
+			console.log(response);
 			if (response['answer'] === "yes") {
 				randomAnswer(yesAnswers, answer);
 			} else {
